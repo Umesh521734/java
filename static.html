@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sum of Array Elements</title>
+</head>
+<body>
+
+  <h2>Sum of Array Elements</h2>
+  
+  <p>Click the button to calculate the sum of the static array elements:</p>
+  <button onclick="calculateSum()">Calculate Sum</button>
+  
+  <p id="result"></p>
+
+  <script>
+    function calculateSum() {
+      const numbers = [5, 10, 15, 20, 25,25];
+
+      let sum = 0;
+      for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+      }
+
+      document.getElementById('result').innerText = "Sum of array elements: " + sum;
+    }
+  </script>
+
+</body>
+</html>
