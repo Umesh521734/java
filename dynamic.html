@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Array Sum</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+    input {
+      padding: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 20px;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Enter numbers to add to the array and calculate the sum</h2>
+
+  <input type="text" id="userInput" placeholder="Enter a number">
+  <button onclick="addToArray()">Add to Array</button>
+
+  <div class="output">
+    <h3>Array: <span id="arrayDisplay">[]</span></h3>
+    <h3>Sum: <span id="sumDisplay">0</span></h3>
+    <p id="errorDisplay" class="error"></p>
+  </div>
+
+  <script>
+    let numbers = [];  // Initialize an empty array to store numbers
+
+    // Function to add the number to the array and update sum
+    function addToArray() {
+      const inputElement = document.getElementById("userInput");
+      const userInput = inputElement.value.trim();
+      const errorDisplay = document.getElementById("errorDisplay");
+
+      errorDisplay.textContent = "";  // Clear any previous error messages
+
+      if (userInput === "") {
+        errorDisplay.textContent = "Please enter a number.";
+        return;
+      }
+
+      const number = parseFloat(userInput);
+
+      if (isNaN(number)) {
+        errorDisplay.textContent = "Invalid input. Please enter a valid number.";
+      } else {
+        numbers.push(number);  // Add the valid number to the array
+        inputElement.value = "";  // Clear the input field
+        updateDisplay();  // Update the displayed array and sum
+      }
+    }
+
+    // Function to update the array display and sum
+    function updateDisplay() {
+      const arrayDisplay = document.getElementById("arrayDisplay");
+      const sumDisplay = document.getElementById("sumDisplay");
+
+      // Display the current array
+      arrayDisplay.textContent = numbers.join(", ");
+
+      // Calculate the sum of the array using reduce
+      const sum = numbers.reduce((acc, num) => acc + num, 0);
+
+      // Display the sum
+      sumDisplay.textContent = sum;
+    }
+  </script>
+</body>
+</html>
